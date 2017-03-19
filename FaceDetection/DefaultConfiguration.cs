@@ -15,7 +15,7 @@ namespace FaceDetection
 		/// If either dimension of the input image is larger than this then it will be resized before processing so that the largest edge is this many pixels long (this potential
 		/// face region rectangles returned will be scaled back up so that they correspond to the original image)
 		/// </summary>
-		public int MaximumImageDimension { get { return 400; } } // 400 strikes a reasonable balance between successfully matching faces in my current (small) sample data while performing the work quickly
+		public int MaximumImageDimension { get { return 200; } } // Experimenting with a faster but less precise skin-tone matching phase (a limit of 200px means there is much less work to do)
 
 		/// <summary>
 		/// When smoothening colour and texture amplitude data, the magnitude of smoothening depends upon the size of the source image - large images will need more smoothening
@@ -28,7 +28,7 @@ namespace FaceDetection
 			if (height <= 0)
 				throw new ArgumentOutOfRangeException(nameof(height));
 
-			return (int)Math.Round((double)(width + height) / 320);
+			return 2; // Since I'm experimenting with a 200px max-dimension limit, for most cases we can skip any calculation here and just return a low fixed value
 		}
 
 		public int TextureAmplitudeFirstPassSmoothenMultiplier { get { return 2; } }
