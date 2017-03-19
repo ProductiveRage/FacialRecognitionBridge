@@ -41,5 +41,11 @@ namespace FaceDetection
 		/// </summary>
 		IEnumerable<Rectangle> FaceRegionAspectRatioFilter(IEnumerable<Rectangle> areas);
 		double PercentToExpandFinalFaceRegionBy { get; }
+
+		/// <summary>
+		/// If enabled, the process will write some of the intermediary images (such as the hue, saturation and texture amplitude data and the various stages of the skin
+		/// masks generation process). This may be useful for debugging.
+		/// </summary>
+		bool SaveProgressImages { get; }
 	}
 }

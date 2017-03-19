@@ -77,9 +77,57 @@ namespace FaceDetection
 			);
 			_logger("Calculated hue data");
 
+			if (_config.SaveProgressImages)
+			{
+				using (var hueSaturationPreview = new Bitmap(smoothedHues.Width, smoothedHues.Height))
+				{
+					hueSaturationPreview.SetRGB(
+						smoothedHues.Transform(hueSaturation =>
+						{
+							var intentity = (byte)((hueSaturation.Hue + 180) / 2); // Hue is a value from -180 to 180 so ((x+180/3) gets us within 0-255
+							return new RGB(intentity, intentity, intentity);
+						})
+					);
+					hueSaturationPreview.Save("SkinMaskGeneration-Hue.png");
+				}
+				using (var saturationPreview = new Bitmap(smoothedHues.Width, smoothedHues.Height))
+				{
+					saturationPreview.SetRGB(
+						smoothedHues.Transform(hueSaturation =>
+						{
+							var intensity = (byte)hueSaturation.Saturation;
+							return new RGB(intensity, intensity, intensity);
+						})
+					);
+					saturationPreview.Save("SkinMaskGeneration-Saturation.png");
+				}
+				using (var textureAmplitudePreview = new Bitmap(textureAmplitude.Width, textureAmplitude.Height))
+				{
+					textureAmplitudePreview.SetRGB(
+						textureAmplitude.Transform(amplitude =>
+						{
+							var intensity = (byte)(amplitude * 16);
+							return new RGB(intensity, intensity, intensity);
+						})
+					);
+					textureAmplitudePreview.Save("SkinMaskGeneration-TextureAmplitude.png");
+				}
+			}
+
 			// Generate a mask of pixels identified as skin
 			var skinMask = smoothedHues.Transform(transformer: _config.SkinFilter);
 			_logger("Built initial skin mask");
+
+			if (_config.SaveProgressImages)
+			{
+				using (var skinMaskPreviewImage = new Bitmap(skinMask.Width, skinMask.Height))
+				{
+					skinMaskPreviewImage.SetRGB(
+						skinMask.Transform(isSkin => isSkin ? new RGB(255, 255, 255) : new RGB(0, 0, 0))
+					);
+					skinMaskPreviewImage.Save("SkinMask1.png");
+				}
+			}
 
 			// Now expand the mask to include any adjacent points that match a less strict filter (which "helps to enlarge the skin map regions to include skin/background
 			// border pixels, regions near hair or other features, or desaturated areas" - as per Jay Kapur, though he recommends five iterations and I think that a slightly
@@ -101,6 +149,17 @@ namespace FaceDetection
 			}
 			_logger($"Expanded initial skin mask (fixed loop count of {_config.NumberOfSkinMaskRelaxedExpansions})");
 
+			if (_config.SaveProgressImages)
+			{
+				using (var skinMaskPreviewImage = new Bitmap(skinMask.Width, skinMask.Height))
+				{
+					skinMaskPreviewImage.SetRGB(
+						skinMask.Transform(isSkin => isSkin ? new RGB(255, 255, 255) : new RGB(0, 0, 0))
+					);
+					skinMaskPreviewImage.Save("SkinMask2.png");
+				}
+			}
+
 			// Jay Kapur takes the skin map and multiplies by a greyscale conversion of the original image, then stretches the histogram to improve contrast, finally taking a
 			// threshold of 95-240 to mark regions that show skin areas. This is approximated here by combining the skin map with greyscale'd pixels from the original data and
 			// using a slightly different threshold range.
@@ -115,6 +174,17 @@ namespace FaceDetection
 				}
 			);
 			_logger("Completed final skin mask");
+
+			if (_config.SaveProgressImages)
+			{
+				using (var skinMaskPreviewImage = new Bitmap(skinMask.Width, skinMask.Height))
+				{
+					skinMaskPreviewImage.SetRGB(
+						skinMask.Transform(isSkin => isSkin ? new RGB(255, 255, 255) : new RGB(0, 0, 0))
+					);
+					skinMaskPreviewImage.Save("SkinMask3.png");
+				}
+			}
 
 			var faceRegions = _config.FaceRegionAspectRatioFilter(
 					IdentifyFacesFromSkinMask(skinMask)
@@ -160,6 +230,21 @@ namespace FaceDetection
 				skinObjects.Add(pointsInObject);
 			}
 			skinObjects = skinObjects.Where(skinObject => skinObject.Length >= (64 * scale)).ToList(); // Ignore any very small regions
+
+			if (_config.SaveProgressImages)
+			{
+				var skinMaskPreviewImage = new Bitmap(skinMask.Width, skinMask.Height);
+				var skinObjectPreviewColours = new[] { new RGB(255, 0, 0), new RGB(0, 255, 0), new RGB(0, 0, 255), new RGB(128, 128, 0), new RGB(0, 128, 128), new RGB(128, 0, 128) };
+				var allSkinObjectPoints = skinObjects.Select((o, i) => new { Points = new HashSet<Point>(o), Colour = skinObjectPreviewColours[i % skinObjectPreviewColours.Length] }).ToArray();
+				skinMaskPreviewImage.SetRGB(
+					skinMask.Transform((isSkin, point) =>
+					{
+						var firstObject = allSkinObjectPoints.FirstOrDefault(o => o.Points.Contains(point));
+						return (firstObject == null) ? new RGB(0, 0, 0) : firstObject.Colour;
+					})
+				);
+				skinMaskPreviewImage.Save("SkinObjects.png");
+			}
 
 			// Look for any fully enclosed holes in each skin object (do this by flood filling from negative points and ignoring any where the fill gets to the edges of object)
 			var boundsForSkinObjects = new List<Rectangle>();

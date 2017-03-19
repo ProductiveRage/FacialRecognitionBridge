@@ -17,7 +17,9 @@ namespace App
 			Document.Body.AppendChild(pleaseWaitMessage);
 
 			var startTime = DateTime.UtcNow;
+			var configuration = DefaultConfiguration.Instance;
 			var faceDetector = new FaceDetector(
+				configuration,
 				logger: message =>
 				{
 					var timeSinceStart = DateTime.UtcNow.Subtract(startTime);
@@ -42,6 +44,8 @@ namespace App
 							{
 								using (var possibleFaceSubImage = bitmap.ExtractImageSectionAndResize(indexedPossibleRegion.Region, new Size(sampleWidth, sampleHeight)))
 								{
+									if (configuration.SaveProgressImages)
+										possibleFaceSubImage.Save($"PossibleFaceRegion{indexedPossibleRegion.Index}.png");
 									using (var windowedImageForFeatureExtraction = possibleFaceSubImage.ExtractImageSectionAndResize(new Rectangle(new Point(0, 0), possibleFaceSubImage.Size), new Size(128, 128)))
 									{
 										if (faceClassifier.IsFace(possibleFaceSubImage))
