@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceDetection", "FaceDetection\FaceDetection.csproj", "{71ABA7A6-20B4-4354-809F-1987C73CC079}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccordNetSupportVectorMachine", "AccordNetSupportVectorMachine\AccordNetSupportVectorMachine.csproj", "{98D16A3B-F127-4F80-B97C-A93FB539ED50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{C4F6B453-4544-4ABE-ACE1-4F6A3D626630}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{14D18C1E-9E66-4939-8CBA-221FD0B7AC59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemShims", "SystemShims\SystemShims.csproj", "{E94B6DEF-52C3-4791-9F54-48ADCA342A14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host (Set me as Startup)", "Host\Host (Set me as Startup).csproj", "{3A62BF20-B692-458C-8509-6B2CB44E9CE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceClassifier", "FaceClassifier\FaceClassifier.csproj", "{8A44DEB9-7A08-4052-A001-1BA2D93AB725}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71ABA7A6-20B4-4354-809F-1987C73CC079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71ABA7A6-20B4-4354-809F-1987C73CC079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71ABA7A6-20B4-4354-809F-1987C73CC079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71ABA7A6-20B4-4354-809F-1987C73CC079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98D16A3B-F127-4F80-B97C-A93FB539ED50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98D16A3B-F127-4F80-B97C-A93FB539ED50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98D16A3B-F127-4F80-B97C-A93FB539ED50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98D16A3B-F127-4F80-B97C-A93FB539ED50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F6B453-4544-4ABE-ACE1-4F6A3D626630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F6B453-4544-4ABE-ACE1-4F6A3D626630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F6B453-4544-4ABE-ACE1-4F6A3D626630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F6B453-4544-4ABE-ACE1-4F6A3D626630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14D18C1E-9E66-4939-8CBA-221FD0B7AC59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D18C1E-9E66-4939-8CBA-221FD0B7AC59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D18C1E-9E66-4939-8CBA-221FD0B7AC59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D18C1E-9E66-4939-8CBA-221FD0B7AC59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E94B6DEF-52C3-4791-9F54-48ADCA342A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E94B6DEF-52C3-4791-9F54-48ADCA342A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E94B6DEF-52C3-4791-9F54-48ADCA342A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E94B6DEF-52C3-4791-9F54-48ADCA342A14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A62BF20-B692-458C-8509-6B2CB44E9CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A62BF20-B692-458C-8509-6B2CB44E9CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A62BF20-B692-458C-8509-6B2CB44E9CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A62BF20-B692-458C-8509-6B2CB44E9CE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A44DEB9-7A08-4052-A001-1BA2D93AB725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A44DEB9-7A08-4052-A001-1BA2D93AB725}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A44DEB9-7A08-4052-A001-1BA2D93AB725}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A44DEB9-7A08-4052-A001-1BA2D93AB725}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,4 @@
+﻿This project exists to make some types available that the .NET code rely upon. The implementations are not complete and not necessarily faithful to the .NET version (for example, Bitmap's "Save"
+method injects the captioned image into the document body instead of trying to persist to the file system in any way), the intention is only to enable the face detection code to execute. (As
+another example, the System.Threading.Tasks.Parallel.ForEach implementation performs all of the tasks sequentially on a single thread, it does not spread the work across multiple cores so
+that it some of the tasks may be done in parallel).

@@ -1,0 +1,3 @@
+﻿This is a Bridge-compiled version of some of the Accord.NET framework (https://github.com/accord-net/framework). It only includes sufficient code to implement the support vector machine required
+by the face detection process. There have been minor tweaks required to make it compile with Bridge but the code here is lifted from Accord.NET and the copyright remains with César Souza and this
+library continues to be redistributed under LGPL.
