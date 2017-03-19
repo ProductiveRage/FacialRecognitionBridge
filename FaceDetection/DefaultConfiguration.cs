@@ -119,7 +119,7 @@ namespace FaceDetection
 		/// If enabled, the process will write some of the intermediary images (such as the hue, saturation and texture amplitude data and the various stages of the skin
 		/// masks generation process). This may be useful for debugging.
 		/// </summary>
-		public bool SaveProgressImages { get { return true; } } // This makes the process considerably slower.. but it's fun seeing the progress images in the browser! :)
+		public bool SaveProgressImages { get { return false; } } // This makes the process considerably slower when enabled.. but it's fun seeing the progress images in the browser! :)
 
 		private static double GetArea(Rectangle area)
 		{
