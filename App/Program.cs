@@ -32,7 +32,7 @@ namespace App
 			const int sampleHeight = 128;
 
 			var img = Document.CreateElement<HTMLImageElement>("img");
-			img.Src = "/TigerWoods.gif";
+			img.Src = "/Dancing.gif";
 			img.AddEventListener("load", () => {
 				Window.SetTimeout(() => { // Add a time out in case the image has been browser-cached (we need to give the browser a chance to show the please-wait before starting work)
 					using (var bitmap = new Bitmap(img))
