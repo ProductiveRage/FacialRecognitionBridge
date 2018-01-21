@@ -9,3 +9,7 @@ For more details about this project, refer to the [.NET version](https://github.
 To try the code out, clone the repo, perform a full build, set "Host" as the Startup Project and then hit F5 (if you don't built first then you'll just get a blank page since the the JavaScript won't have been generated and the browser won't be able to load the application logic). After a few seconds, you should see an image with the face outlined in green!
 
 *(The code is considerably slower to run in the browser than the .NET version, it's something that I'd like to look  into - what, in particular, is slower and is it possible to do it differently in the browser, somehow, in order to make it faster)*
+
+## Intermediate images
+
+If you want to get an insight into your the image is processed (such as seeing which areas are identified as "maybe face" before the SVM filters them down) then change the "SaveProgressImages" property to true in the file "DefaultConfiguration.cs" in the "FaceDetection" project. This will make the processing take (even) longer.
